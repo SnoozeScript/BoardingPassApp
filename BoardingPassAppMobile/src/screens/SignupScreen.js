@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
-import { supabase } from '../utils/supabase'; // Import Supabase client
+import { supabase } from '../utils/supabase'; 
 
 export default function SignupScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ export default function SignupScreen({ navigation }) {
       navigation.navigate('Login');
     } catch (error) {
       console.error('Signup error:', error.message);
-      console.error('Detailed error:', error); // Log the detailed error for debugging
+      console.error('Detailed error:', error); 
       setError('Signup failed. Please try again.');
     }
   };

@@ -1,11 +1,11 @@
-// src/screens/EventsScreen.js
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, StyleSheet, Card } from 'react-native';
 
 export default function EventsScreen({ navigation }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userName, setUserName] = useState('John Doe'); // Sample user name (you can get this from login)
+  const [userName, setUserName] = useState('John Doe'); // Sample user name 
 
   // Demo data for events
   const demoEvents = [
@@ -64,8 +64,8 @@ export default function EventsScreen({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       setEvents(demoEvents); // Set demo events after a delay (simulating data fetch)
-      setLoading(false); // Stop loading
-    }, 1000); // Simulate 1 second delay
+      setLoading(false); 
+    }, 1000); 
   }, []);
 
   if (loading) {

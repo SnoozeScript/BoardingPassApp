@@ -1,4 +1,3 @@
-// src/screens/QRCodeScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
@@ -10,21 +9,29 @@ export default function QRCodeScreen({ route }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Your Event QR Code</Text>
+      <View style={styles.boardingPassContainer}>
+        <Text style={styles.title}>Boarding Pass</Text>
 
-      <View style={styles.detailsContainer}>
-        <Text style={styles.detailsText}><Text style={styles.bold}>Event:</Text> {event.name}</Text>
-        <Text style={styles.detailsText}><Text style={styles.bold}>Date:</Text> {new Date(event.date).toLocaleDateString()}</Text>
-        <Text style={styles.detailsText}><Text style={styles.bold}>Location:</Text> {event.location}</Text>
-        <Text style={styles.detailsText}><Text style={styles.bold}>Name:</Text> {userName}</Text>
+        <View style={styles.detailsContainer}>
+          <Text style={styles.detailsText}><Text style={styles.bold}>Event:</Text> {event.name}</Text>
+          <Text style={styles.detailsText}><Text style={styles.bold}>Date:</Text> {new Date(event.date).toLocaleDateString()}</Text>
+          <Text style={styles.detailsText}><Text style={styles.bold}>Location:</Text> {event.location}</Text>
+          <Text style={styles.detailsText}><Text style={styles.bold}>Name:</Text> {userName}</Text>
+        </View>
+
+        <View style={styles.qrContainer}>
+          <QRCode
+            value={qrValue} 
+            size={200} 
+            color="black" 
+            backgroundColor="white" 
+          />
+        </View>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Scan to Enter</Text>
+        </View>
       </View>
-
-      <QRCode
-        value={qrValue} // QR code value (event info + user name)
-        size={250} // Set QR code size
-        color="black" // Set QR code color
-        backgroundColor="white" // Set QR code background color
-      />
     </ScrollView>
   );
 }
@@ -35,32 +42,58 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f4f4f9',
+    backgroundColor: '#ecf0f1',
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  detailsContainer: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
+  boardingPassContainer: {
+    backgroundColor: '#ffffff',
+    width: '100%',
+    maxWidth: 400,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#2980b9',
     padding: 20,
-    marginBottom: 30,
-    shadowColor: '#000',
+    shadowColor: '#2980b9',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowRadius: 10,
     elevation: 5, // for Android shadow effect
-    width: '100%',
+  },
+  title: {
+    fontSize: 28,
+    marginBottom: 20,
+    fontWeight: 'bold',
+    color: '#2980b9',
+    textAlign: 'center',
+  },
+  detailsContainer: {
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#bdc3c7',
+    paddingBottom: 15,
   },
   detailsText: {
-    fontSize: 16,
-    color: '#555',
+    fontSize: 18,
+    color: '#2c3e50',
     marginBottom: 10,
   },
   bold: {
+    fontWeight: 'bold',
+    color: '#2980b9',
+  },
+  qrContainer: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  footer: {
+    marginTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#bdc3c7',
+    paddingTop: 10,
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 16,
+    color: '#2980b9',
     fontWeight: 'bold',
   },
 });
